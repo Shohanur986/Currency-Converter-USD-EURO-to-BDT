@@ -1,0 +1,23 @@
+# database.py
+import cx_Oracle
+
+def get_db_connection():
+    """
+    Creates a connection to the Oracle database.
+    Adjust the connection string as per your Oracle database credentials.
+    """
+    return cx_Oracle.connect('your_username/your_password@localhost')
+
+def get_conversion_rate(currency_code):
+    """
+    Fetches the conversion rate to BDT for a given currency code.
+    """
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    try:
+        cursor.execute("SELECT RateToBDT FROM ConversionRates WHERE CurrencyCode = :cur", cur=currency_code)
+        rate = cursor.fetchone()[0]
+    finally:
+        cursor.close()
+        connection.close()
+    return rate
