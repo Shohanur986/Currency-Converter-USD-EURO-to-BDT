@@ -1,0 +1,14 @@
+// script.js
+function convertCurrency() {
+    var amount = document.getElementById('amount').value;
+    var currency = document.getElementById('currency').value;
+    fetch(`/convert?amount=${amount}&from=${currency}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('result').innerHTML = 'Converted Amount: ' + data.converted_amount + ' BDT';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('result').innerHTML = 'Error: Could not convert currency.';
+        });
+}
