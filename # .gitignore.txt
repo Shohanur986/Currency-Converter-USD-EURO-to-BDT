@@ -1,0 +1,15 @@
+# .gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.db
+.env
+.vscode/
+.idea/
+.DS_Store
+*.log
+*.csv
+*.json
+node_modules/
+dist/
+build/
